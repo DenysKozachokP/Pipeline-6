@@ -23,82 +23,72 @@ namespace MenuApp
         private SoundPlayer player1;
         private SoundPlayer player2;
         private SoundPlayer player3;
-        Firstlvl firstlvl = new Firstlvl();
-        Result_base result_base = new Result_base();
-        FinishAnimation finanim = new FinishAnimation();
-        Stopwatch stopwatch = new Stopwatch();
-        
+        private Firstlvl firstlvl = new Firstlvl();
+        private Result_base result_base = new Result_base();
+        private FinishAnimation finanim = new FinishAnimation();
+        private Stopwatch stopwatch = new Stopwatch();
+
         public First_lvl()
         {
             InitializeComponent();
-            if (result_base.GetSoundInfo() == 1)
-            {
-                player1 = result_base.GetSuond(2);
-                player2 = result_base.GetSuond(3);
-                player3 = result_base.GetSuond(1);
-            }
-            if (result_base.GetSoundInfo() == 0)
-            {
-                player1 = result_base.GetSuond(4);
-                player2 = result_base.GetSuond(4);
-                player3 = result_base.GetSuond(4);
-            }
-            this.Refresh();
-            
+            InitializeSoundPlayers();
         }
+
+        private void InitializeSoundPlayers()
+        {
+            int soundInfo = result_base.GetSoundInfo();
+            player1 = result_base.GetSuond(soundInfo == 1 ? 2 : 4);
+            player2 = result_base.GetSuond(soundInfo == 1 ? 3 : 4);
+            player3 = result_base.GetSuond(soundInfo == 1 ? 1 : 4);
+        }
+
         private void LoseAnimation()
         {
-            LoseForm loseForm = new LoseForm();
-            loseForm.SetStar(1);
-            loseForm.Show();
-            this.Hide();
+            new LoseForm() { TopLevel = false, Parent = this }.Show();
+            Hide();
         }
+
         private void FinishAnimation()
         {
             label1.Text = (28 - firstlvl.GetCountStar()).ToString();
             label1.Refresh();
+
             player3.Play();
             Thread.Sleep(300);
             stopwatch.Stop();
             player2.Play();
             Thread.Sleep(3000);
 
-            int duration = Convert.ToInt32(stopwatch.Elapsed.TotalSeconds), durationstart = 0;
+            int duration = Convert.ToInt32(stopwatch.Elapsed.TotalSeconds);
+            int durationstart = 0;
             Form_result form_result = new Form_result();
-            form_result.SetStar(firstlvl.GetStars(), firstlvl.GetCountStar(),2);
+            form_result.SetStar(firstlvl.GetStars(), firstlvl.GetCountStar(), 2);
 
             int[] result_arr = result_base.GetResultArray();
-            if (result_arr.Length>=2)
+            if (result_arr.Length >= 2)
                 durationstart = result_arr[2];
-            if (result_arr.Length >=2 && firstlvl.GetCountStar() < result_arr[1])
+            if (result_arr.Length >= 2 && firstlvl.GetCountStar() <= result_arr[1] && durationstart > duration)
                 result_base.ChangeInfoToBase(0, firstlvl.GetStars(), firstlvl.GetCountStar(), duration);
-            if (result_arr.Length >=2 && firstlvl.GetCountStar() <= result_arr[1] && durationstart > duration)
-                result_base.ChangeInfoToBase(0, firstlvl.GetStars(), firstlvl.GetCountStar(), duration);
-            if (result_arr.Length < 2)
+            else
                 result_base.SetInfoToBase(firstlvl.GetStars(), firstlvl.GetCountStar(), duration);
 
-            PictureBox[] pictureBoxes = new PictureBox[9] { pictureBox2, pictureBox3, pictureBox4, pictureBox5, pictureBox6, pictureBox7, pictureBox8, pictureBox9, pictureBox10};
-            int[] finan = new int[9] { 1, 9, 3, 8, 2, 0, 2, 0, 11 };
+            PictureBox[] pictureBoxes = { pictureBox2, pictureBox3, pictureBox4, pictureBox5, pictureBox6, pictureBox7, pictureBox8, pictureBox9, pictureBox10 };
+            int[] finan = { 1, 9, 3, 8, 2, 0, 2, 0, 11 };
 
             player1.Play();
             finanim.FinishAnim(pictureBoxes, finan);
             player1.Stop();
 
             form_result.Show();
-            this.Hide();
+            Hide();
         }
+
         private void First_lvl_Load(object sender, EventArgs e)
         {
             stopwatch.Start();
             Form_Menu form_menu = Application.OpenForms["Form_Menu"] as Form_Menu;
-            if (form_menu != null)
-            {
-                player = form_menu.GetSoundPlayer();
-                if (player != null)
-                {
-                    player.Stop();
-                }
-            }
+            if (form_menu != null && (player = form_menu.GetSoundPlayer()) != null)
+                player.Stop();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

@@ -17,6 +17,29 @@ namespace MenuApp
     {
         SoundPlayer player;
         Result_base result_Base = new Result_base();
+        OptionsClass optionsInstance = OptionsClass.GetInstance();
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Ви впевнені що хочете видалити прогрес?", "Підтверження", MessageBoxButtons.OKCancel);
+
+            if (result == DialogResult.OK)
+            {
+                optionsInstance.DeleteInfoToBase();
+            }
+        }
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            optionsInstance.ChangeSoundOnOff(1);
+            player.Play();
+            this.Refresh();
+        }
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            optionsInstance.ChangeSoundOnOff(0);
+            player.Stop();
+            this.Refresh();
+        }
         public Options()
         {
             InitializeComponent();
@@ -30,29 +53,7 @@ namespace MenuApp
             this.Hide();
         }
 
-        private void pictureBox1_Click_1(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Ви впевнені що хочете видалити прогрес?", "Підтверження", MessageBoxButtons.OKCancel);
-
-            if (result == DialogResult.OK)
-            {
-                result_Base.DeleteInfoToBase();
-            }
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            result_Base.ChangeSoundOnOff(1);
-            player.Play();
-            this.Refresh();
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-            result_Base.ChangeSoundOnOff(0);
-            player.Stop();
-            this.Refresh();
-        }
+        
 
         private void Options_Load(object sender, EventArgs e)
         {

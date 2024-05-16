@@ -19,7 +19,7 @@ namespace MenuApp
         }
         public void SetStar(int star, int click, int a)
         {
-            string imgFolder = "D:\\Навчання_2_курс\\Констроювання програмного\\KPZ\\lab-6\\Pipeline\\img";
+            string imgFolder = "D:\\Навчання_2_курс\\6-lab KPZ\\Pipeline\\img";
             string imageFileName3 = "gold_stars_3.png";
             string imageFileName2 = "gold_stars_2.png";
             string imageFileName1 = "gold_stars_1.png";

@@ -12,7 +12,7 @@ namespace WinFormsLibrary_Levels
 
         public void FinishAnim(PictureBox[] pictureBoxes, int[] finanim)
         {
-            string imgFolder = "D:\\Навчання_2_курс\\Констроювання програмного\\KPZ\\lab-6\\Pipeline\\img\\img for animation";
+            string imgFolder = "D:\\Навчання_2_курс\\6-lab KPZ\\Pipeline\\img\\img for animation";
 
             string[] imageFileNames = {
                 "zognuta_truba_1.png", "zognuta_truba_2.png", "zognuta_truba_3.png", "zognuta_truba_4.png",

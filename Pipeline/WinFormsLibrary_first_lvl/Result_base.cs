@@ -11,8 +11,8 @@ namespace WinFormsLibrary_Levels
 {
     public class Result_base
     {
-        private static string _imgFolderPath = "D:\\Навчання_2_курс\\Констроювання програмного\\KPZ\\lab-6\\Pipeline\\img";
-        private static string GetFilePath(string fileName)
+        private static string _imgFolderPath = "D:\\Навчання_2_курс\\6-lab KPZ\\Pipeline\\img";
+        public static string GetFilePath(string fileName)
         {
             return Path.Combine(_imgFolderPath, fileName);
         }
@@ -79,11 +79,7 @@ namespace WinFormsLibrary_Levels
             }
         }
 
-        public void DeleteInfoToBase()
-        {
-            string filePath = GetFilePath("base_star.txt");
-            File.WriteAllLines(filePath, new string[] { string.Empty });
-        }
+        
         public PictureBox SetStarInLevelMenu(PictureBox pictureBox, int n)
         {
             string[] imagePaths = {
