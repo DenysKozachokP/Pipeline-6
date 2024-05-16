@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MenuApp.Eight_lvl">
+    <Position X="16.75" Y="0.5" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>5AAAMhAAgCAAARgAAATAQIQCIQAAAAABYAAgAIBAIAA=</HashCode>
+      <FileName>Eight_lvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuApp.First_lvl">
+    <Position X="6.25" Y="0.5" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>4AAAMhAAACAABRgCAATAQAQCIQAAAAABYQAgAIBAIAA=</HashCode>
+      <FileName>First_lvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuApp.Second_lvl">
+    <Position X="7.75" Y="0.5" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>4IAAMhAAkCAAARgAAATAQIQCIQAAAAABYAAgAIBAIAA=</HashCode>
+      <FileName>Second_lvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuApp.Third_lvl">
+    <Position X="9.25" Y="0.5" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>4AAAMhAAhCAAARgAAATAQIACIQAAAAABYAAgAABAIAA=</HashCode>
+      <FileName>Third_lvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuApp.Fourth_lvl">
+    <Position X="10.75" Y="0.5" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>4AAAMhAAgCAAAxAAAATAQKACIQAAAAABYAAgAIBAIAA=</HashCode>
+      <FileName>Fourth_lvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuApp.Fivth_lvl">
+    <Position X="12.25" Y="0.5" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>4AAAMhAAgCAAARgAAATAQoQCIQAAAAABYACgAIBAIAA=</HashCode>
+      <FileName>Fivth_lvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuApp.Sixth_lvl">
+    <Position X="13.75" Y="0.5" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>4AAAMhAAgCAAARgAAATAQIACIQAAAAABcAAgAIBAIAA=</HashCode>
+      <FileName>Sixth_lvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuApp.Seventh_lvl">
+    <Position X="15.25" Y="0.5" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>4AAAMhBAgCAAAxgAAATAQIQCIQACAAABYAAgAABAIAA=</HashCode>
+      <FileName>Seventh_lvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuApp.TournamentBracket">
+    <Position X="6.25" Y="8.5" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>8UAIcBBAACAghJBCAAChABACAAQAAAAAQAAgAABAAIA=</HashCode>
+      <FileName>TournamentBracket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuApp.Options">
+    <Position X="7.75" Y="8.5" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAEjAAAGAAABAAAECAAAQCAAAAAAABAAAAAIBgAAA=</HashCode>
+      <FileName>Options.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuApp.LoseForm">
+    <Position X="13.75" Y="8.5" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IAAAABAAACAAABAAAACAAAQCAAAAAAAAAAAAAIBAAAA=</HashCode>
+      <FileName>LoseForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuApp.Level_Menu">
+    <Position X="9.25" Y="8.5" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AIAAMhAAACAAARgAAACAQAQCAQAAACABYAAgAIBAAAE=</HashCode>
+      <FileName>Level_Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuApp.Form_Menu">
+    <Position X="10.75" Y="8.5" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAIhIAACAAAAAAAACAQAQCAAAAAAARIAAAAIBAAAA=</HashCode>
+      <FileName>Form_Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuApp.Form_result">
+    <Position X="12.25" Y="8.5" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IAAAAhAAACAAABAAAACAAAQCAAAAAAAAAAABAIBAAAA=</HashCode>
+      <FileName>Form_result.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

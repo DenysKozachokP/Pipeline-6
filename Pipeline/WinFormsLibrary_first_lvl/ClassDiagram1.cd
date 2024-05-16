@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WinFormsLibrary_first_lvl.Firstlvl">
+    <Position X="1.5" Y="0.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>QEIAIAAAQAAEAAAAAAAAoAAACCAEQAQAAEAAAECIAAg=</HashCode>
+      <FileName>Firstlvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WinFormsLibrary_Levels.Secondlvl">
+    <Position X="3.25" Y="0.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>QQIAAAAAAAAAAAAAAAAAgAAAACAEUAQABCAAAECIAAA=</HashCode>
+      <FileName>Secondlvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WinFormsLibrary_Levels.Fourthlvl">
+    <Position X="6.75" Y="0.5" Width="1.25" />
+    <InheritanceLine Type="WinFormsLibrary_Levels.Secondlvl" ManuallyRouted="true">
+      <Path>
+        <Point X="3.875" Y="0.5" />
+        <Point X="3.875" Y="0.25" />
+        <Point X="4.75" Y="0.25" />
+        <Point X="4.75" Y="5.213" />
+        <Point X="7.375" Y="5.213" />
+        <Point X="7.375" Y="4.684" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>BAIEAAAAAAAAQAAAEAAAgCAAACAEQAQAgAAAAEIAAAA=</HashCode>
+      <FileName>Fourthlvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WinFormsLibrary_Levels.Thirdlvl">
+    <Position X="5" Y="0.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AgIIAAAAAACAAAAgAAAAgAEAACAEQAQAABAAAEQAAAA=</HashCode>
+      <FileName>Thirdlvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WinFormsLibrary_Levels.Fivthlvl">
+    <Position X="8.25" Y="0.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>CgKCAAAAAAAAAAAAAAAAgEAAACAEQAQAQAAAAEEAAAA=</HashCode>
+      <FileName>Fivthlvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WinFormsLibrary_Levels.Sixthlvl">
+    <Position X="9.75" Y="0.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>EAIBAAAAAAAAAAAAAAAAgAgAACAEQAQAAAIEgEABAAA=</HashCode>
+      <FileName>Sixthlvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WinFormsLibrary_Levels.Sevethlvl">
+    <Position X="11.25" Y="0.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>IIIAAAAAgAAAIAAAAAAAgBAAACAEQAQAAAEAQEAAAAA=</HashCode>
+      <FileName>Sevethlvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WinFormsLibrary_Levels.Eightlvl">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAAAAAAAAAAAAAAAAAgAACACAEQAQAAAAIIEEAQAA=</HashCode>
+      <FileName>Eightlvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WinFormsLibrary_Levels.FinishAnimation">
+    <Position X="1.5" Y="6.5" Width="1.5" />
+    <AssociationLine Name="Firstlvl" Type="WinFormsLibrary_first_lvl.Firstlvl" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="2.188" Y="6.5" />
+        <Point X="2.188" Y="5.584" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FinishAnimation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Firstlvl" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WinFormsLibrary_Levels.Result_base">
+    <Position X="4.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAIAAAAAAAABAAAAAAAABAAQAEAAAAAAACIAAAAAA=</HashCode>
+      <FileName>Result_base.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
