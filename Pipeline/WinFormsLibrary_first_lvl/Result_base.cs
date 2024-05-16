@@ -126,21 +126,6 @@ namespace WinFormsLibrary_Levels
 
             return players[Math.Min(n, players.Length - 1)];
         }
-        public void ChangeSoundOnOff(int n)
-        {
-            string filePath = GetFilePath("Sound_on_off.txt");
-            string[] lines = File.Exists(filePath) ? File.ReadAllLines(filePath) : new string[0];
-
-            if (lines.Length > 0)
-            {
-                lines[0] = n.ToString();
-                File.WriteAllLines(filePath, lines);
-            }
-            else
-            {
-                Console.WriteLine("Sound on/off file not found.");
-            }
-        }
         public int GetSoundInfo()
         {
             string filePath = GetFilePath("Sound_on_off.txt");

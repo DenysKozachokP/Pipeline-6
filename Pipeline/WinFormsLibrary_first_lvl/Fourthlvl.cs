@@ -32,11 +32,6 @@ namespace WinFormsLibrary_Levels
         {
             return base.Finishmark;
         }
-        //*******************
-        public int GetAngles4(int n)
-        {
-            return Angles4[n];
-        }
         public int GetSumPoints4(int n)
         {
             return SumPoint4[n];
@@ -45,7 +40,6 @@ namespace WinFormsLibrary_Levels
         {
             return Finish4[n];
         }
-        //*******************
         public void CountDegrysZH4(int n)
         {
             CountStars++;
