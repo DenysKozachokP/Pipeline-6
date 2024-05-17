@@ -387,7 +387,7 @@ The code does not contain anything extra. All classes, methods and properties ha
 
 ### Refactoring Techniques
 
-###### Extract Method
+###### 1. Extract Method
 Extracted the repetitive piece of code to get the file path into a separate GetFilePath method. This helps to avoid duplication of code and improve its readability.
 ```
 public static string GetFilePath(string fileName)
@@ -395,4 +395,25 @@ public static string GetFilePath(string fileName)
     return Path.Combine(_imgFolderPath, fileName);
 }
 ```
-['Result_base'](./WinFormsLibrary_first_lvl/Result_base.cs)
+['Result_base'](./Pipeline/WinFormsLibrary_first_lvl/Result_base.cs)
+
+###### 2. Avoiding magic numbers and strings
+Magic numbers and strings used for file paths or file names have been moved to static class fields. This makes the code more readable and allows you to change these values ​​in one place.
+```
+ private static string _imgFolderPath = "D:\\Навчання_2_курс\\6-lab KPZ\\Pipeline\\img";
+```
+['Result_base'](./Pipeline/WinFormsLibrary_first_lvl/Result_base.cs)
+
+###### 3. Guard Clause:
+Added guard clause in methods almost all methods require an increased level of code protection.
+['Result_base'](./Pipeline/WinFormsLibrary_first_lvl/Result_base.cs)
+
+['Result_base'](./Pipeline/WinFormsLibrary_first_lvl/FinishAnimation.cs)
+
+['Result_base'](./Pipeline/WinFormsLibrary_first_lvl/OptionsClass.cs)
+
+['Result_base'](./Pipeline/WinFormsLibrary_first_lvl/ImageFactory.cs)
+
+['Result_base'](./Pipeline/WinFormsLibrary_first_lvl/ImageFactory.cs)
+
+###### This is not the entire list of Refactoring Techniques, there are many more
