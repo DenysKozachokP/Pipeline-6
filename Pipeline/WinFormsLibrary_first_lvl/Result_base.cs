@@ -5,17 +5,19 @@ using System.Media;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using WinFormsLibrary_first_lvl;
 
-namespace WinFormsLibrary_Levels
+namespace ClassLibrary
 {
-    public class Result_base
+    public class Result_base : ISubject
     {
         private static string _imgFolderPath = "D:\\Навчання_2_курс\\6-lab KPZ\\Pipeline\\img";
+        private List<IObserver> _observers = new List<IObserver>();
+
         public static string GetFilePath(string fileName)
         {
             return Path.Combine(_imgFolderPath, fileName);
         }
+
         public int[] GetResultArray()
         {
             string filePath = GetFilePath("base_star.txt");
@@ -39,12 +41,13 @@ namespace WinFormsLibrary_Levels
                     if (int.TryParse(line, out int number))
                         numbers.Add(number);
                     else
-                        Console.WriteLine($"Unable to parse '{line}' to int.");
+                        MessageBox.Show($"Unable to parse '{line}' to int.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
             return numbers.ToArray();
         }
+
         public void SetInfoToBase(int star, int clicks, int time)
         {
             string filePath = GetFilePath("base_star.txt");
@@ -60,7 +63,10 @@ namespace WinFormsLibrary_Levels
                 File.AppendAllText(filePath, clicks + Environment.NewLine);
                 File.AppendAllText(filePath, time + Environment.NewLine);
             }
+
+            Notify();
         }
+
         public void ChangeInfoToBase(int n, int star, int click, int time)
         {
             string filePath = GetFilePath("base_star.txt");
@@ -75,11 +81,12 @@ namespace WinFormsLibrary_Levels
             }
             else
             {
-                Console.WriteLine("Invalid index for changing information.");
+                MessageBox.Show("Invalid index for changing information.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            Notify();
         }
 
-        
         public PictureBox SetStarInLevelMenu(PictureBox pictureBox, int n)
         {
             string[] imagePaths = {
@@ -87,7 +94,7 @@ namespace WinFormsLibrary_Levels
             "gold_stars_1.png",
             "gold_stars_2.png",
             "gold_stars_3.png"
-            };
+        };
 
             Image[] images = new Image[imagePaths.Length];
 
@@ -107,6 +114,7 @@ namespace WinFormsLibrary_Levels
             }
             return pictureBox;
         }
+
         public SoundPlayer GetSuond(int n)
         {
             string[] soundPaths = {
@@ -126,6 +134,7 @@ namespace WinFormsLibrary_Levels
 
             return players[Math.Min(n, players.Length - 1)];
         }
+
         public int GetSoundInfo()
         {
             string filePath = GetFilePath("Sound_on_off.txt");
@@ -135,6 +144,23 @@ namespace WinFormsLibrary_Levels
                 return n;
             else
                 return 0;
+        }
+        public void Attach(IObserver observer)
+        {
+            _observers.Add(observer);
+        }
+
+        public void Detach(IObserver observer)
+        {
+            _observers.Remove(observer);
+        }
+
+        public void Notify()
+        {
+            foreach (var observer in _observers)
+            {
+                observer.Update();
+            }
         }
     }
 }

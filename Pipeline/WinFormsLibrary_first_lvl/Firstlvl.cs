@@ -1,8 +1,7 @@
 ﻿using System.Reflection.Emit;
 using System.Windows.Forms;
-using WinFormsLibrary_first_lvl;
 
-namespace WinFormsLibrary_first_lvl
+namespace ClassLibrary
 {
     public class Firstlvl
     {

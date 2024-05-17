@@ -1,5 +1,5 @@
+using ClassLibrary;
 using System.Media;
-using WinFormsLibrary_Levels;
 
 namespace MenuApp
 {

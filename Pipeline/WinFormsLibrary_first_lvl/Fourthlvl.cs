@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinFormsLibrary_Levels
+namespace ClassLibrary
 {
     public class Fourthlvl : Secondlvl
     {

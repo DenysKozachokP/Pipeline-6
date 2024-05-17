@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WinFormsLibrary_first_lvl\ClassLibrary.csproj" />
     <ProjectReference Include="..\WinFormsLibrary_first_lvl\WinFormsLibrary_Levels.csproj" />
   </ItemGroup>
 

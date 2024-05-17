@@ -9,11 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
-using WinFormsLibrary_first_lvl;
-using WinFormsLibrary_Levels;
 using System.IO;
 using System.Diagnostics;
 using System.Media;
+using ClassLibrary;
 
 namespace MenuApp
 {

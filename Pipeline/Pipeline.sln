@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsLibrary_Levels", "WinFormsLibrary_first_lvl\WinFormsLibrary_Levels.csproj", "{92E09C26-632D-4132-BFCB-90336E23449D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary", "WinFormsLibrary_first_lvl\ClassLibrary.csproj", "{92E09C26-632D-4132-BFCB-90336E23449D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MenuApp", "MenuApp\MenuApp.csproj", "{4CAF1C55-F5F5-4E12-9405-8198280D7F68}"
 EndProject

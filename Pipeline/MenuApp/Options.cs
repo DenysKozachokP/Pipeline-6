@@ -8,8 +8,7 @@ using System.Text;
 using System.Media;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinFormsLibrary_Levels;
-using WinFormsLibrary_first_lvl;
+using ClassLibrary;
 
 namespace MenuApp
 {
@@ -18,6 +17,7 @@ namespace MenuApp
         SoundPlayer player;
         Result_base result_Base = new Result_base();
         OptionsClass optionsInstance = OptionsClass.GetInstance();
+        
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
@@ -25,6 +25,8 @@ namespace MenuApp
 
             if (result == DialogResult.OK)
             {
+                Result_base resultBase = new Result_base();
+                ConcreteObserver observer = new ConcreteObserver(resultBase);
                 optionsInstance.DeleteInfoToBase();
             }
         }

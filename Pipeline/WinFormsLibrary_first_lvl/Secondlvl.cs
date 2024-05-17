@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WinFormsLibrary_first_lvl;
-using WinFormsLibrary_Levels;
 
-namespace WinFormsLibrary_Levels
+
+namespace ClassLibrary
 {
     public class Secondlvl : Firstlvl
     {
