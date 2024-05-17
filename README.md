@@ -323,3 +323,27 @@ private void FinishAnimation()
     Hide();
 }
 ```
+###### OCP
+Methods for working with sounds and images: Similarly, methods for working with sounds and images are also closed to change. For example, the SetStarInLevelMenu method is used to set the image in the level menu, and it can be extended to support new functionality without changing the base class.
+```
+public SoundPlayer GetSuond(int n)
+{
+    string[] soundPaths = {
+    "fone_sound.wav",
+    "click.wav",
+    "anim_watr.wav",
+    "victory.wav",
+    "empty.wav"
+};
+
+    SoundPlayer[] players = new SoundPlayer[soundPaths.Length];
+
+    for (int i = 0; i < soundPaths.Length; i++)
+    {
+        players[i] = new SoundPlayer(GetFilePath(soundPaths[i]));
+    }
+
+    return players[Math.Min(n, players.Length - 1)];
+}
+```
+
