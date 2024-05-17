@@ -18,7 +18,7 @@ namespace ClassLibrary
 
         public void Update()
         {
-            Console.WriteLine("ResultBase оновлено");
+            MessageBox.Show("ResultBase оновлено", "Підтверження", MessageBoxButtons.OKCancel);
         }
     }
 }
