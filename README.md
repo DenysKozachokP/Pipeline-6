@@ -209,7 +209,7 @@ public class Result_base : ISubject
 }
 ```
 ### Principles
-###### (DIP) Dependency Inversion Principle 
+###### 1 .(DIP) Dependency Inversion Principle 
 The FinishAnimation class uses the ImageFactory object to create images. This allows the FinishAnimation class to not depend directly on the rendering details, but to use the factory to obtain the required resources. Thus, FinishAnimation depends on the abstraction (ImageFactory) and not on specific implementation details.
 ```
 public class ImageFactory
@@ -258,7 +258,7 @@ public class FinishAnimation
     }
 }
 ```
-###### KISS 
+###### 2. KISS 
 These changes keep the code clean and easily maintainable, in line with the KISS principle.
 ```
 private SoundPlayer[] players;
@@ -323,7 +323,7 @@ private void FinishAnimation()
     Hide();
 }
 ```
-###### OCP
+###### 3. OCP
 Methods for working with sounds and images: Similarly, methods for working with sounds and images are also closed to change. For example, the SetStarInLevelMenu method is used to set the image in the level menu, and it can be extended to support new functionality without changing the base class.
 ```
 public SoundPlayer GetSuond(int n)
@@ -346,4 +346,74 @@ public SoundPlayer GetSuond(int n)
     return players[Math.Min(n, players.Length - 1)];
 }
 ```
+###### 4. SPR
+There are two operations in the FinishAnimation class: getting the images from the image factory and updating the images in the PictureBox. These two operations can change independently of each other, so they are separated into separate classes
+```
+public class FinishAnimation
+{
+    private ImageFactory imageFactory = new ImageFactory();
 
+    public void FinishAnim(PictureBox[] pictureBoxes, int[] finanim)
+    {
+        Image[] images = GetImages(finanim);
+        UpdatePictureBoxes(pictureBoxes, images);
+    }
+
+    private Image[] GetImages(int[] finanim)
+    {
+        List<Image> images = new List<Image>();
+        foreach (int animIndex in finanim)
+        {
+            Image image = imageFactory.GetImage(animIndex);
+            if (image != null)
+                images.Add(image);
+        }
+        return images.ToArray();
+    }
+
+    private void UpdatePictureBoxes(PictureBox[] pictureBoxes, Image[] images)
+    {
+        for (int i = 0; i < Math.Min(pictureBoxes.Length, images.Length); i++)
+        {
+            pictureBoxes[i].Image?.Dispose();
+            pictureBoxes[i].Image = images[i];
+            pictureBoxes[i].Refresh();
+        }
+    }
+}
+```
+###### 5. YAGNI (You Aren’t Gonna Need It): 
+The code does not contain anything extra. All classes, methods and properties have a clear purpose.
+
+### Refactoring Techniques
+
+###### 1. Extract Method
+Extracted the repetitive piece of code to get the file path into a separate GetFilePath method. This helps to avoid duplication of code and improve its readability.
+```
+public static string GetFilePath(string fileName)
+{
+    return Path.Combine(_imgFolderPath, fileName);
+}
+```
+['Result_base'](./Pipeline/WinFormsLibrary_first_lvl/Result_base.cs)
+
+###### 2. Avoiding magic numbers and strings
+Magic numbers and strings used for file paths or file names have been moved to static class fields. This makes the code more readable and allows you to change these values ​​in one place.
+```
+ private static string _imgFolderPath = "D:\\Навчання_2_курс\\6-lab KPZ\\Pipeline\\img";
+```
+['Result_base'](./Pipeline/WinFormsLibrary_first_lvl/Result_base.cs)
+
+###### 3. Guard Clause:
+Added guard clause in methods almost all methods require an increased level of code protection.
+['Result_base'](./Pipeline/WinFormsLibrary_first_lvl/Result_base.cs)
+
+['Result_base'](./Pipeline/WinFormsLibrary_first_lvl/FinishAnimation.cs)
+
+['Result_base'](./Pipeline/WinFormsLibrary_first_lvl/OptionsClass.cs)
+
+['Result_base'](./Pipeline/WinFormsLibrary_first_lvl/ImageFactory.cs)
+
+['Result_base'](./Pipeline/WinFormsLibrary_first_lvl/ImageFactory.cs)
+
+###### This is not the entire list of Refactoring Techniques, there are many more
