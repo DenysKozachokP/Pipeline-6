@@ -258,3 +258,68 @@ public class FinishAnimation
     }
 }
 ```
+###### KISS 
+These changes keep the code clean and easily maintainable, in line with the KISS principle.
+```
+private SoundPlayer[] players;
+private Firstlvl firstlvl = new Firstlvl();
+private Result_base result_base = new Result_base();
+private FinishAnimation finanim = new FinishAnimation();
+private Stopwatch stopwatch = new Stopwatch();
+
+public First_lvl()
+{
+    InitializeComponent();
+    InitializeSoundPlayers();
+}
+
+private void InitializeSoundPlayers()
+{
+    int soundInfo = result_base.GetSoundInfo();
+    players = new SoundPlayer[3];
+    players[0] = result_base.GetSuond(soundInfo == 1 ? 2 : 4);
+    players[1] = result_base.GetSuond(soundInfo == 1 ? 3 : 4);
+    players[2] = result_base.GetSuond(soundInfo == 1 ? 1 : 4);
+}
+
+private void LoseAnimation()
+{
+    new LoseForm() { TopLevel = false, Parent = this }.Show();
+    Hide();
+}
+
+private void FinishAnimation()
+{
+    label1.Text = (28 - firstlvl.GetCountStar()).ToString();
+    label1.Refresh();
+
+    PlayAndWait(players[2], 300);
+    stopwatch.Stop();
+    PlayAndWait(players[1], 3000);
+
+    int duration = Convert.ToInt32(stopwatch.Elapsed.TotalSeconds);
+    int[] result_arr = result_base.GetResultArray();
+    int durationstart = result_arr.Length >= 2 ? result_arr[2] : 0;
+
+    if (result_arr.Length >= 2 && firstlvl.GetCountStar() <= result_arr[1] && durationstart > duration)
+    {
+        result_base.ChangeInfoToBase(0, firstlvl.GetStars(), firstlvl.GetCountStar(), duration);
+    }
+    else
+    {
+        result_base.SetInfoToBase(firstlvl.GetStars(), firstlvl.GetCountStar(), duration);
+    }
+
+    PictureBox[] pictureBoxes = { pictureBox2, pictureBox3, pictureBox4, pictureBox5, pictureBox6, pictureBox7, pictureBox8, pictureBox9, pictureBox10 };
+    int[] finan = { 1, 9, 3, 8, 2, 0, 2, 0, 11 };
+
+    players[0].Play();
+    finanim.FinishAnim(pictureBoxes, finan);
+    players[0].Stop();
+
+    var form_result = new Form_result();
+    form_result.SetStar(firstlvl.GetStars(), firstlvl.GetCountStar(), 2);
+    form_result.Show();
+    Hide();
+}
+```
