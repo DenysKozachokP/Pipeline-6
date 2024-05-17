@@ -209,7 +209,7 @@ public class Result_base : ISubject
 }
 ```
 ### Principles
-###### (DIP) Dependency Inversion Principle 
+###### 1 .(DIP) Dependency Inversion Principle 
 The FinishAnimation class uses the ImageFactory object to create images. This allows the FinishAnimation class to not depend directly on the rendering details, but to use the factory to obtain the required resources. Thus, FinishAnimation depends on the abstraction (ImageFactory) and not on specific implementation details.
 ```
 public class ImageFactory
@@ -258,7 +258,7 @@ public class FinishAnimation
     }
 }
 ```
-###### KISS 
+###### 2. KISS 
 These changes keep the code clean and easily maintainable, in line with the KISS principle.
 ```
 private SoundPlayer[] players;
@@ -323,7 +323,7 @@ private void FinishAnimation()
     Hide();
 }
 ```
-###### OCP
+###### 3. OCP
 Methods for working with sounds and images: Similarly, methods for working with sounds and images are also closed to change. For example, the SetStarInLevelMenu method is used to set the image in the level menu, and it can be extended to support new functionality without changing the base class.
 ```
 public SoundPlayer GetSuond(int n)
@@ -346,4 +346,39 @@ public SoundPlayer GetSuond(int n)
     return players[Math.Min(n, players.Length - 1)];
 }
 ```
+###### 4. SPR
+There are two operations in the FinishAnimation class: getting the images from the image factory and updating the images in the PictureBox. These two operations can change independently of each other, so they are separated into separate classes
+```
+public class FinishAnimation
+{
+    private ImageFactory imageFactory = new ImageFactory();
 
+    public void FinishAnim(PictureBox[] pictureBoxes, int[] finanim)
+    {
+        Image[] images = GetImages(finanim);
+        UpdatePictureBoxes(pictureBoxes, images);
+    }
+
+    private Image[] GetImages(int[] finanim)
+    {
+        List<Image> images = new List<Image>();
+        foreach (int animIndex in finanim)
+        {
+            Image image = imageFactory.GetImage(animIndex);
+            if (image != null)
+                images.Add(image);
+        }
+        return images.ToArray();
+    }
+
+    private void UpdatePictureBoxes(PictureBox[] pictureBoxes, Image[] images)
+    {
+        for (int i = 0; i < Math.Min(pictureBoxes.Length, images.Length); i++)
+        {
+            pictureBoxes[i].Image?.Dispose();
+            pictureBoxes[i].Image = images[i];
+            pictureBoxes[i].Refresh();
+        }
+    }
+}
+```
