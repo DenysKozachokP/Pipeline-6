@@ -14,15 +14,29 @@ namespace ClassLibrary
 
         public void FinishAnim(PictureBox[] pictureBoxes, int[] finanim)
         {
-            for (int i = 0; i < finanim.Length; i++)
+            Image[] images = GetImages(finanim);
+            UpdatePictureBoxes(pictureBoxes, images);
+        }
+
+        private Image[] GetImages(int[] finanim)
+        {
+            List<Image> images = new List<Image>();
+            foreach (int animIndex in finanim)
             {
-                Image image = imageFactory.GetImage(finanim[i]);
+                Image image = imageFactory.GetImage(animIndex);
                 if (image != null)
-                {
-                    pictureBoxes[i].Image?.Dispose();
-                    pictureBoxes[i].Image = image;
-                    pictureBoxes[i].Refresh();
-                }
+                    images.Add(image);
+            }
+            return images.ToArray();
+        }
+
+        private void UpdatePictureBoxes(PictureBox[] pictureBoxes, Image[] images)
+        {
+            for (int i = 0; i < Math.Min(pictureBoxes.Length, images.Length); i++)
+            {
+                pictureBoxes[i].Image?.Dispose();
+                pictureBoxes[i].Image = images[i];
+                pictureBoxes[i].Refresh();
             }
         }
     }
