@@ -382,3 +382,17 @@ public class FinishAnimation
     }
 }
 ```
+###### 5. YAGNI (You Aren’t Gonna Need It): 
+The code does not contain anything extra. All classes, methods and properties have a clear purpose.
+
+### Refactoring Techniques
+
+###### Extract Method
+Extracted the repetitive piece of code to get the file path into a separate GetFilePath method. This helps to avoid duplication of code and improve its readability.
+```
+public static string GetFilePath(string fileName)
+{
+    return Path.Combine(_imgFolderPath, fileName);
+}
+```
+['Result_base'](./WinFormsLibrary_first_lvl/Result_base.cs)
