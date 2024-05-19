@@ -48,7 +48,7 @@ namespace MenuApp
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Ви впевнені що хочете вийти?", "Підтверження", MessageBoxButtons.OKCancel);
+            DialogResult result = MessageBox.Show("Р’Рё РІРїРµРІРЅРµРЅС– С‰Рѕ С…РѕС‡РµС‚Рµ РІРёР№С‚Рё?", "РџС–РґС‚РІРµСЂР¶РµРЅРЅСЏ", MessageBoxButtons.OKCancel);
 
             if (result == DialogResult.OK)
             {

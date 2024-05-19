@@ -18,88 +18,80 @@ namespace MenuApp
     public partial class Level_Menu : Form
     {
         private SoundPlayer player;
-        First_lvl lvl;
-        Result_base result_base = new Result_base();
+        private Result_base result_base = new Result_base();
+
         public Level_Menu()
         {
             InitializeComponent();
+            InitializeSound();
+            InitializeLevelMenu();
+        }
+
+        private void InitializeSound()
+        {
             player = result_base.GetSuond(0);
             if (result_base.GetSoundInfo() == 1)
                 player.Play();
-            if (result_base.GetSoundInfo() == 0)
+            else
                 player.Stop();
-            this.Refresh();
+            Refresh();
         }
-        private void pictureBox11_Click(object sender, EventArgs e)
-        {
-            Form_Menu form_Menu = new Form_Menu();
-            form_Menu.Show();
-            this.Hide();
-        }
-        private void Level_Menu_Load(object sender, EventArgs e)
+
+        private void InitializeLevelMenu()
         {
             int[] num = result_base.GetResultArray();
 
             result_base.SetStarInLevelMenu(pictureBox9, 0);
-            if (num.Length >= 3)
-                pictureBoxLock2.Visible = false;
-            if (num.Length >= 6)
-            {
-                result_base.SetStarInLevelMenu(pictureBox10, 3);
-                pictureBoxLock3.Visible = false;
-            }
-            if (num.Length >= 9)
-            {
-                result_base.SetStarInLevelMenu(pictureBox13, 6);
-                pictureBoxLock4.Visible = false;
-            }
-            if (num.Length >= 12)
-            {
-                result_base.SetStarInLevelMenu(pictureBox14, 9);
-                pictureBoxLock5.Visible = false;
-            }
-            if (num.Length >= 15)
-            {
-                result_base.SetStarInLevelMenu(pictureBox12, 12);
-                pictureBoxLock6.Visible = false;
-            }
-            if (num.Length >= 18)
-            {
-                result_base.SetStarInLevelMenu(pictureBox15, 15);
-                pictureBoxLock7.Visible = false;
-            }
-            if (num.Length >= 21)
-            {
-                result_base.SetStarInLevelMenu(pictureBox16, 18);
-                pictureBoxLock8.Visible = false;
-            }
-            if (num.Length >= 24)
-                result_base.SetStarInLevelMenu(pictureBox17, 21);
+            UpdateLockVisibility(num.Length);
         }
+
+        private void UpdateLockVisibility(int numLength)
+        {
+            List<PictureBox> pictureBoxes = new List<PictureBox>()
+            {
+                pictureBoxLock2, pictureBoxLock3, pictureBoxLock4,
+                pictureBoxLock5, pictureBoxLock6, pictureBoxLock7,
+                pictureBoxLock8
+            };
+
+            for (int i = 0; i < pictureBoxes.Count; i++)
+            {
+                pictureBoxes[i].Visible = numLength >= (i + 1) * 3;
+            }
+        }
+
+        private void GoToLevel<T>() where T : Form, new()
+        {
+            T form = new T();
+            form.Show();
+            Hide();
+        }
+
+        private void pictureBox11_Click(object sender, EventArgs e)
+        {
+            GoToLevel<Form_Menu>();
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            First_lvl form_first = new First_lvl();
-            form_first.Show();
-            this.Hide();
+            GoToLevel<First_lvl>();
         }
+
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            Second_lvl form_second = new Second_lvl();
-            form_second.Show();
-            this.Hide();
+            GoToLevel<Second_lvl>();
         }
+
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            Third_lvl form_third = new Third_lvl();
-            form_third.Show();
-            this.Hide();
+            GoToLevel<Third_lvl>();
         }
+
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            Fourth_lvl fourth_lvl = new Fourth_lvl();
-            fourth_lvl.Show();
-            this.Hide();
+            GoToLevel<Fourth_lvl>();
         }
+
         private void Level_Menu_FormClosing(object sender, FormClosingEventArgs e)
         {
             player.Stop();

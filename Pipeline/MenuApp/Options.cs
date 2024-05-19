@@ -14,57 +14,61 @@ namespace MenuApp
 {
     public partial class Options : Form
     {
-        SoundPlayer player;
-        Result_base result_Base = new Result_base();
-        OptionsClass optionsInstance = OptionsClass.GetInstance();
-        
+        private SoundPlayer _player;
+        private Result_base _resultBase = new Result_base();
+        private OptionsClass _optionsInstance = OptionsClass.GetInstance();
 
-        private void pictureBox1_Click_1(object sender, EventArgs e)
+        public Options()
         {
-            DialogResult result = MessageBox.Show("Ви впевнені що хочете видалити прогрес?", "Підтверження", MessageBoxButtons.OKCancel);
+            InitializeComponent();
+            _player = _resultBase.GetSuond(0);
+        }
+
+        private void pictureBoxDeleteProgress_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to delete the progress?", "Confirmation", MessageBoxButtons.OKCancel);
 
             if (result == DialogResult.OK)
             {
                 Result_base resultBase = new Result_base();
                 ConcreteObserver observer = new ConcreteObserver(resultBase);
-                optionsInstance.DeleteInfoToBase();
+                _optionsInstance.DeleteInfoToBase();
             }
         }
-        private void pictureBox2_Click(object sender, EventArgs e)
+
+        private void pictureBoxSoundOn_Click(object sender, EventArgs e)
         {
-            optionsInstance.ChangeSoundOnOff(1);
-            player.Play();
-            this.Refresh();
-        }
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-            optionsInstance.ChangeSoundOnOff(0);
-            player.Stop();
-            this.Refresh();
-        }
-        public Options()
-        {
-            InitializeComponent();
-            player = result_Base.GetSuond(0);
+            _optionsInstance.ChangeSoundOnOff(1);
+            _player.Play();
+            Refresh();
         }
 
-        private void pictureBox11_Click(object sender, EventArgs e)
+        private void pictureBoxSoundOff_Click(object sender, EventArgs e)
         {
-            Form_Menu form_Menu = new Form_Menu();
-            form_Menu.Show();
-            this.Hide();
+            _optionsInstance.ChangeSoundOnOff(0);
+            _player.Stop();
+            Refresh();
         }
 
-        
-
-        private void Options_Load(object sender, EventArgs e)
+        private void pictureBoxNavigate_Click(object sender, EventArgs e)
         {
-
+            PictureBox pictureBox = (PictureBox)sender;
+            Form formToShow;
+            switch (pictureBox.Name)
+            {
+                case "pictureBoxNavigateMenu":
+                    formToShow = new Form_Menu();
+                    break;
+                default:
+                    return;
+            }
+            formToShow.Show();
+            Hide();
         }
 
         private void Options_FormClosing(object sender, FormClosingEventArgs e)
         {
-            player.Stop();
+            _player.Stop();
         }
     }
 }

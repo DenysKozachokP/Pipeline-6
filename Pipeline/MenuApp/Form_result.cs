@@ -33,16 +33,23 @@ namespace MenuApp
             Image image2 = Image.FromFile(imagePath2);
             Image image1 = Image.FromFile(imagePath1);
 
-            if (star == 3)
-                pictureBox1.Image = image3;
-            else if (star == 2)
-                pictureBox1.Image = image2;
-            else
-                pictureBox1.Image = image1;
+            switch (star)
+            {
+                case 3:
+                    pictureBox1.Image = image3;
+                    break;
+                case 2:
+                    pictureBox1.Image = image2;
+                    break;
+                default:
+                    pictureBox1.Image = image1;
+                    break;
+            }
 
             label2.Text = click.ToString();
             label3.Text = a.ToString();
         }
+
         private void First_lvl_fin_Load(object sender, EventArgs e)
         {
             if (label3.Text == "9")
@@ -67,24 +74,25 @@ namespace MenuApp
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            if (label3.Text == "2")
+            switch (label3.Text)
             {
-                Second_lvl second_lvl = new Second_lvl();
-                second_lvl.Show();
-                this.Hide();
+                case "2":
+                    Second_lvl second_lvl = new Second_lvl();
+                    second_lvl.Show();
+                    this.Hide();
+                    break;
+                case "3":
+                    Third_lvl third_lvl = new Third_lvl();
+                    third_lvl.Show();
+                    this.Hide();
+                    break;
+                case "4":
+                    Fourth_lvl fourth_lvl = new Fourth_lvl();
+                    fourth_lvl.Show();
+                    this.Hide();
+                    break;
+                default:
+                    break;
             }
-            if (label3.Text == "3")
-            {
-                Third_lvl third_lvl = new Third_lvl();  
-                third_lvl.Show();
-                this.Hide();
-            }
-            if (label3.Text == "4")
-            {
-                Fourth_lvl fourth_lvl = new Fourth_lvl();
-                fourth_lvl.Show();
-                this.Hide();
-            }            
         }
-    }
 }

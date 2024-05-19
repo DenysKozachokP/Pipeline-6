@@ -93,163 +93,30 @@ namespace MenuApp
             form_menu?.GetSoundPlayer()?.Stop();
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void PictureBox_Click(object sender, EventArgs e)
         {
-            players[2].Play();
-            firstlvl.Rotate90Deg(pictureBox2, 0);
-            firstlvl.CountDegrysZH1(0);
-            label1.Text = (28 - firstlvl.GetCountStar()).ToString();
-            if (firstlvl.GetFinishmark())
-                FinishAnimation();
-            if (int.Parse(label1.Text) < 1)
-                LoseAnimation();
-        }
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-            players[2].Play();
-            firstlvl.Rotate180Deg(pictureBox3, 1);
-            firstlvl.CountDegrysPR1(1);
-            label1.Text = (28 - firstlvl.GetCountStar()).ToString();
-            if (firstlvl.GetFinishmark())
-                FinishAnimation();
-            if (int.Parse(label1.Text) < 1)
-                LoseAnimation();
-        }
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            players[2].Play();
-            firstlvl.Rotate90Deg(pictureBox4, 2);
-            firstlvl.CountDegrysZH1(2);
-            label1.Text = (28 - firstlvl.GetCountStar()).ToString();
-            if (firstlvl.GetFinishmark())
-                FinishAnimation();
-            if (int.Parse(label1.Text) < 1)
-                LoseAnimation();
-        }
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-            players[2].Play();
-            firstlvl.Rotate180Deg(pictureBox5, 3);
-            firstlvl.CountDegrysPR1(3);
-            label1.Text = (28 - firstlvl.GetCountStar()).ToString();
-            if (firstlvl.GetFinishmark())
-                FinishAnimation();
-            if (int.Parse(label1.Text) < 1)
-                LoseAnimation();
-        }
+            PictureBox pictureBox = sender as PictureBox;
+            if (pictureBox != null)
+            {
+                int index = int.Parse(pictureBox.Tag.ToString());
+                players[2].Play();
+                
+                if (index % 2 == 0)
+                    firstlvl.Rotate90Deg(pictureBox, index / 2);
+                else
+                    firstlvl.Rotate180Deg(pictureBox, index / 2);
 
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-            players[2].Play();
-            firstlvl.Rotate90Deg(pictureBox6, 4);
-            firstlvl.CountDegrysZH1(4);
-            label1.Text = (28 - firstlvl.GetCountStar()).ToString();
-            if (firstlvl.GetFinishmark())
-                FinishAnimation();
-            if (int.Parse(label1.Text) < 1)
-                LoseAnimation();
-        }
+                if (index % 2 == 0)
+                    firstlvl.CountDegrysZH1(index / 2);
+                else
+                    firstlvl.CountDegrysPR1(index / 2);
 
-        private void pictureBox7_Click(object sender, EventArgs e)
-        {
-            players[2].Play();
-            firstlvl.Rotate90Deg(pictureBox7, 5);
-            firstlvl.CountDegrysZH1(5);
-            label1.Text = (28 - firstlvl.GetCountStar()).ToString();
-            if (firstlvl.GetFinishmark())
-                FinishAnimation();
-            if (int.Parse(label1.Text) < 1)
-                LoseAnimation();
-        }
-
-        private void pictureBox8_Click(object sender, EventArgs e)
-        {
-            players[2].Play();
-            firstlvl.Rotate90Deg(pictureBox8, 6);
-            firstlvl.CountDegrysZH1(6);
-            label1.Text = (28 - firstlvl.GetCountStar()).ToString();
-            if (firstlvl.GetFinishmark())
-                FinishAnimation();
-            if (int.Parse(label1.Text) < 1)
-                LoseAnimation();
-        }
-
-        private void pictureBox9_Click(object sender, EventArgs e)
-        {
-            players[2].Play();
-            firstlvl.Rotate90Deg(pictureBox9, 7);
-            firstlvl.CountDegrysZH1(7);
-            label1.Text = (28 - firstlvl.GetCountStar()).ToString();
-            if (firstlvl.GetFinishmark())
-                FinishAnimation();
-            if (int.Parse(label1.Text) < 1)
-                LoseAnimation();
-        }
-
-        private void pictureBox11_Click(object sender, EventArgs e)
-        {
-            players[2].Play();
-            pictureBox11.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            pictureBox11.Refresh();
-            firstlvl.CountStarPlus();
-            label1.Text = (28 - firstlvl.GetCountStar()).ToString();
-            if (int.Parse(label1.Text) < 1)
-                LoseAnimation();
-        }
-
-        private void pictureBox12_Click(object sender, EventArgs e)
-        {
-            players[2].Play();
-            pictureBox12.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            pictureBox12.Refresh();
-            firstlvl.CountStarPlus();
-            label1.Text = (28 - firstlvl.GetCountStar()).ToString();
-            if (int.Parse(label1.Text) < 1)
-                LoseAnimation();
-        }
-
-        private void pictureBox13_Click(object sender, EventArgs e)
-        {
-            players[2].Play();
-            pictureBox13.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            pictureBox13.Refresh();
-            firstlvl.CountStarPlus();
-            label1.Text = (28 - firstlvl.GetCountStar()).ToString();
-            if (int.Parse(label1.Text) < 1)
-                LoseAnimation();
-        }
-
-        private void pictureBox14_Click(object sender, EventArgs e)
-        {
-            players[2].Play();
-            pictureBox14.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            pictureBox14.Refresh();
-            firstlvl.CountStarPlus();
-            label1.Text = (28 - firstlvl.GetCountStar()).ToString();
-            if (int.Parse(label1.Text) < 1)
-                LoseAnimation();
-        }
-
-        private void pictureBox15_Click(object sender, EventArgs e)
-        {
-            players[2].Play();
-            pictureBox15.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            pictureBox15.Refresh();
-            firstlvl.CountStarPlus();
-            label1.Text = (28 - firstlvl.GetCountStar()).ToString();
-            if (int.Parse(label1.Text) < 1)
-                LoseAnimation();
-        }
-
-        private void pictureBox16_Click(object sender, EventArgs e)
-        {
-            players[2].Play();
-            pictureBox16.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            pictureBox16.Refresh();
-            firstlvl.CountStarPlus();
-            label1.Text = (28 - firstlvl.GetCountStar()).ToString();
-            if (int.Parse(label1.Text) < 1)
-                LoseAnimation();
+                label1.Text = (28 - firstlvl.GetCountStar()).ToString();
+                if (firstlvl.GetFinishmark())
+                    FinishAnimation();
+                if (int.Parse(label1.Text) < 1)
+                    LoseAnimation();
+            }
         }
 
         private void pictureBox17_Click(object sender, EventArgs e)
