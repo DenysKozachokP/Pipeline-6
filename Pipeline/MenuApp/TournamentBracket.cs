@@ -13,7 +13,7 @@ namespace MenuApp
 {
     public partial class TournamentBracket : Form
     {
-        Result_base resultbase = new Result_base();
+        private readonly ResultBase _resultBase = new ResultBase();
 
         public TournamentBracket()
         {
@@ -22,80 +22,32 @@ namespace MenuApp
 
         private void TournamentBracket_Load(object sender, EventArgs e)
         {
-            
-            int[] num = resultbase.GetResultArray();
-            int tempmin;
-            int tempsec;
-            if (num.Length >=3)
+            InitializeLevel(pictureBox1Lock, pictureBox1Star, label1Click, label1Time, 0);
+            InitializeLevel(pictureBox2Lock, pictureBox2Star, label2Click, label2Time, 3);
+            InitializeLevel(pictureBox3Lock, pictureBox3Star, label3Click, label3Time, 6);
+            InitializeLevel(pictureBox4Lock, pictureBox4Star, label4Click, label4Time, 9);
+            InitializeLevel(pictureBox5Lock, pictureBox5Star, label5Click, label5Time, 12);
+            InitializeLevel(pictureBox6Lock, pictureBox6Star, label6Click, label6Time, 15);
+            InitializeLevel(pictureBox7Lock, pictureBox7Star, label7Click, label7Time, 18);
+            InitializeLevel(null, pictureBox8Star, label8Click, label8Time, 21); // No lock for the last level
+        }
+
+        private void InitializeLevel(PictureBox lockPictureBox, PictureBox starPictureBox, Label clickLabel, Label timeLabel, int index)
+        {
+            int[] num = _resultBase.GetResultArray();
+            if (num.Length >= index + 3)
             {
-                pictureBox2Lock.Visible = false;
-                resultbase.SetStarInLevelMenu(pictureBox1Star, 0);
-                label1Click.Text = num[1].ToString();
-                tempmin = (int) num[2] / 60;
-                tempsec = (int)  (num[2] - (tempmin * 60));
-                label1Time.Text =( tempmin >= 10 ? tempmin.ToString() : "0" + tempmin.ToString() )+ ":" + (tempsec >= 10 ? tempsec.ToString() : "0" + tempsec.ToString());
-            }
-            if (num.Length >=6)
-            {
-                pictureBox3Lock.Visible = false;
-                resultbase.SetStarInLevelMenu(pictureBox2Star, 3);
-                label2Click.Text = num[4].ToString();
-                tempmin = (int)num[5] / 60;
-                tempsec = (int)(num[5] - (tempmin * 60));
-                label2Time.Text =(tempmin >= 10 ? tempmin.ToString() : "0" + tempmin.ToString())+ ":" + (tempsec >= 10 ? tempsec.ToString() : "0" + tempsec.ToString());
-            }
-            if (num.Length >=9)
-            {
-                pictureBox4Lock.Visible = false;
-                resultbase.SetStarInLevelMenu(pictureBox3Star, 6);
-                label3Click.Text = num[7].ToString();
-                tempmin = (int)num[8] / 60;
-                tempsec = (int)(num[8] - (tempmin * 60));
-                label3Time.Text =(tempmin >= 10 ? tempmin.ToString() : "0" + tempmin.ToString())+ ":" + (tempsec >= 10 ? tempsec.ToString() : "0" + tempsec.ToString());
-            }
-            if (num.Length >=12)
-            {
-                pictureBox5Lock.Visible = false;
-                resultbase.SetStarInLevelMenu(pictureBox4Star, 9);
-                label4Click.Text = num[10].ToString();
-                tempmin = (int)num[11] / 60;
-                tempsec = (int)(num[11] - (tempmin * 60));
-                label4Time.Text =(tempmin >= 10 ? tempmin.ToString() : "0" + tempmin.ToString())+ ":" + (tempsec >= 10 ? tempsec.ToString() : "0" + tempsec.ToString());
-            }
-            if (num.Length >=15)
-            {
-                pictureBox6Lock.Visible = false;
-                resultbase.SetStarInLevelMenu(pictureBox5Star, 12);
-                label5Click.Text = num[13].ToString();
-                tempmin = (int)num[14] / 60;
-                tempsec = (int)(num[14] - (tempmin * 60));
-                label5Time.Text =(tempmin >= 10 ? tempmin.ToString() : "0" + tempmin.ToString())+ ":" + (tempsec >= 10 ? tempsec.ToString() : "0" + tempsec.ToString());
-            }
-            if (num.Length >=18)
-            {
-                pictureBox7Lock.Visible = false;
-                resultbase.SetStarInLevelMenu(pictureBox6Star, 15);
-                label6Click.Text = num[16].ToString();
-                tempmin = (int)num[17] / 60;
-                tempsec = (int)(num[17] - (tempmin * 60));
-                label6Time.Text =(tempmin >= 10 ? tempmin.ToString() : "0" + tempmin.ToString())+ ":" + (tempsec >= 10 ? tempsec.ToString() : "0" + tempsec.ToString());
-            }
-            if (num.Length >=21)
-            {
-                pictureBox8Lock.Visible = false;
-                resultbase.SetStarInLevelMenu(pictureBox7Star, 18);
-                label7Click.Text = num[19].ToString();
-                tempmin = (int)num[20] / 60;
-                tempsec = (int)(num[20] - (tempmin * 60));
-                label7Time.Text =(tempmin >= 10 ? tempmin.ToString() : "0" + tempmin.ToString())+ ":" + (tempsec >= 10 ? tempsec.ToString() : "0" + tempsec.ToString());
-            }
-            if (num.Length >=24)
-            {
-                resultbase.SetStarInLevelMenu(pictureBox8Star, 21);
-                label8Click.Text = num[22].ToString();
-                tempmin = (int)num[23] / 60;
-                tempsec = (int)(num[23] - (tempmin * 60));
-                label8Time.Text =(tempmin >= 10 ? tempmin.ToString() : "0" + tempmin.ToString())+ ":" + (tempsec >= 10 ? tempsec.ToString() : "0" + tempsec.ToString());
+                if (lockPictureBox != null)
+                    lockPictureBox.Visible = false;
+
+                _resultBase.SetStarInLevelMenu(starPictureBox, index);
+                clickLabel.Text = num[index + 1].ToString();
+
+                int totalSeconds = num[index + 2];
+                int minutes = totalSeconds / 60;
+                int seconds = totalSeconds % 60;
+
+                timeLabel.Text = $"{minutes:D2}:{seconds:D2}";
             }
         }
 
@@ -103,7 +55,7 @@ namespace MenuApp
         {
             Form_Menu form_Menu = new Form_Menu();
             form_Menu.Show();
-            this.Hide();
+            Hide();
         }
     }
 }

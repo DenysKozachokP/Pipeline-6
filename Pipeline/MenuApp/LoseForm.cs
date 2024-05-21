@@ -19,48 +19,44 @@ namespace MenuApp
             InitializeComponent();
         }
 
-        private void LoseForm_Load(object sender, EventArgs e)
+        public void SetStar(int starNumber)
         {
-
-        }
-        public void SetStar(int a)
-        {           
-            label1.Text = a.ToString();
+            label1.Text = starNumber.ToString();
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
+        private void pictureBoxRestart_Click(object sender, EventArgs e)
         {
-            if (label1.Text == "1")
+            int starNumber = int.Parse(label1.Text);
+
+            Form formToOpen;
+            switch (starNumber)
             {
-                First_lvl first_Lvl = new First_lvl();
-                first_Lvl.Show();
-                this.Hide();
+                case 1:
+                    formToOpen = new First_lvl();
+                    break;
+                case 2:
+                    formToOpen = new Second_lvl();
+                    break;
+                case 3:
+                    formToOpen = new Third_lvl();
+                    break;
+                case 4:
+                    formToOpen = new Fourth_lvl();
+                    break;
+                default:
+                    // Handle other cases if needed
+                    return;
             }
-            if (label1.Text == "2")
-            {
-                Second_lvl second_lvl = new Second_lvl();
-                second_lvl.Show();
-                this.Hide();
-            }
-            if (label1.Text == "3")
-            {
-                Third_lvl third_lvl = new Third_lvl();
-                third_lvl.Show();
-                this.Hide();
-            }
-            if (label1.Text == "4")
-            {
-                Fourth_lvl fourth_lvl = new Fourth_lvl();
-                fourth_lvl.Show();
-                this.Hide();
-            }
+
+            formToOpen.Show();
+            Hide();
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void pictureBoxMainMenu_Click(object sender, EventArgs e)
         {
-            Level_Menu level_Menu = new Level_Menu();
-            level_Menu.Show();
-            this.Hide();
+            Level_Menu levelMenu = new Level_Menu();
+            levelMenu.Show();
+            Hide();
         }
     }
 }
