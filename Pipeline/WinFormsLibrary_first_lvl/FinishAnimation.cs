@@ -7,10 +7,14 @@ using System.Windows.Forms;
 
 namespace ClassLibrary
 {
-
     public class FinishAnimation
     {
-        private ImageFactory imageFactory = new ImageFactory();
+        private readonly ImageFactory _imageFactory;
+
+        public FinishAnimation(ImageFactory imageFactory)
+        {
+            _imageFactory = imageFactory;
+        }
 
         public void FinishAnim(PictureBox[] pictureBoxes, int[] finanim)
         {
@@ -23,7 +27,7 @@ namespace ClassLibrary
             List<Image> images = new List<Image>();
             foreach (int animIndex in finanim)
             {
-                Image image = imageFactory.GetImage(animIndex);
+                Image image = _imageFactory.GetImage(animIndex);
                 if (image != null)
                     images.Add(image);
             }

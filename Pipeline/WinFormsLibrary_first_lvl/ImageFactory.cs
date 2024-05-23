@@ -8,21 +8,20 @@ namespace ClassLibrary
 {
     public class ImageFactory
     {
-        private string imgFolder = "D:\\Навчання_2_курс\\6-lab KPZ\\Pipeline\\img\\img for animation";
+        private readonly string _imgFolder;
+        private readonly string[] _imageFileNames;
 
-        private string[] imageFileNames = {
-        "zognuta_truba_1.png", "zognuta_truba_2.png", "zognuta_truba_3.png", "zognuta_truba_4.png",
-        "troina_truba_1.png", "troina_truba_2.png", "troina_truba_3.png", "troina_truba_4.png",
-        "prama_truba_1.png", "prama_truba_2.png",
-        "chetwerna_truba.png",
-        "start-finish_truba.png"
-    };
+        public ImageFactory(string imgFolder, string[] imageFileNames)
+        {
+            _imgFolder = imgFolder;
+            _imageFileNames = imageFileNames;
+        }
 
         public Image GetImage(int index)
         {
-            if (index >= 0 && index < imageFileNames.Length)
+            if (index >= 0 && index < _imageFileNames.Length)
             {
-                string imagePath = Path.Combine(imgFolder, imageFileNames[index]);
+                string imagePath = Path.Combine(_imgFolder, _imageFileNames[index]);
                 return Image.FromFile(imagePath);
             }
             else

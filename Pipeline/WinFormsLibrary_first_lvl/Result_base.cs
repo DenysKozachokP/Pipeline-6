@@ -10,17 +10,23 @@ namespace ClassLibrary
 {
     public class Result_base : ISubject
     {
-        private static string _imgFolderPath = "D:\\Навчання_2_курс\\6-lab KPZ\\Pipeline\\img";
-        private List<IObserver> _observers = new List<IObserver>();
+        protected readonly string _imgFolderPath;
+        private readonly List<IObserver> _observers;
 
-        public static string GetFilePath(string fileName)
+        public Result_base(string imgFolderPath)
         {
-            return Path.Combine(_imgFolderPath, fileName);
+            _imgFolderPath = imgFolderPath;
+            _observers = new List<IObserver>();
+        }
+
+        public string GetFilePath(string imgFolderPath, string fileName)
+        {
+            return Path.Combine(imgFolderPath, fileName);
         }
 
         public int[] GetResultArray()
         {
-            string filePath = GetFilePath("base_star.txt");
+            string filePath = GetFilePath(_imgFolderPath, "base_star.txt");
 
             List<int> numbers = new List<int>();
 
@@ -50,7 +56,7 @@ namespace ClassLibrary
 
         public void SetInfoToBase(int star, int clicks, int time)
         {
-            string filePath = GetFilePath("base_star.txt");
+            string filePath = GetFilePath(_imgFolderPath, "base_star.txt");
             string[] lines = File.Exists(filePath) ? File.ReadAllLines(filePath) : new string[0];
 
             if (lines.Length == 0)
@@ -69,7 +75,7 @@ namespace ClassLibrary
 
         public void ChangeInfoToBase(int n, int star, int click, int time)
         {
-            string filePath = GetFilePath("base_star.txt");
+            string filePath = GetFilePath(_imgFolderPath, "base_star.txt");
             string[] lines = File.Exists(filePath) ? File.ReadAllLines(filePath) : new string[0];
 
             if (lines.Length >= n + 3)
@@ -100,7 +106,7 @@ namespace ClassLibrary
 
             for (int i = 0; i < imagePaths.Length; i++)
             {
-                images[i] = Image.FromFile(GetFilePath(imagePaths[i]));
+                images[i] = Image.FromFile(GetFilePath(_imgFolderPath, imagePaths[i]));
             }
 
             int[] num = GetResultArray();
@@ -115,7 +121,7 @@ namespace ClassLibrary
             return pictureBox;
         }
 
-        public SoundPlayer GetSuond(int n)
+        public SoundPlayer GetSound(int n)
         {
             string[] soundPaths = {
             "fone_sound.wav",
@@ -129,7 +135,7 @@ namespace ClassLibrary
 
             for (int i = 0; i < soundPaths.Length; i++)
             {
-                players[i] = new SoundPlayer(GetFilePath(soundPaths[i]));
+                players[i] = new SoundPlayer(GetFilePath(_imgFolderPath, soundPaths[i]));
             }
 
             return players[Math.Min(n, players.Length - 1)];
@@ -137,7 +143,7 @@ namespace ClassLibrary
 
         public int GetSoundInfo()
         {
-            string filePath = GetFilePath("Sound_on_off.txt");
+            string filePath = GetFilePath(_imgFolderPath, "Sound_on_off.txt");
             string[] lines = File.Exists(filePath) ? File.ReadAllLines(filePath) : new string[0];
 
             if (lines.Length > 0 && int.TryParse(lines[0], out int n))
@@ -145,6 +151,7 @@ namespace ClassLibrary
             else
                 return 0;
         }
+
         public void Attach(IObserver observer)
         {
             _observers.Add(observer);

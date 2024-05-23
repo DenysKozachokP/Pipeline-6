@@ -8,27 +8,28 @@ namespace ClassLibrary
 {
     public class OptionsClass : Result_base
     {
-        private static OptionsClass instance;
+        private static OptionsClass _instance;
 
-        private OptionsClass() { }
+        private OptionsClass(string imgFolderPath) : base(imgFolderPath) { }
 
-        public static OptionsClass GetInstance()
+        public static OptionsClass GetInstance(string imgFolderPath)
         {
-            if (instance == null)
+            if (_instance == null)
             {
-                instance = new OptionsClass();
+                _instance = new OptionsClass(imgFolderPath);
             }
-            return instance;
+            return _instance;
         }
 
-        public void DeleteInfoToBase()
+        public void DeleteInfoFromBase()
         {
-            string filePath = GetFilePath("base_star.txt");
-            File.WriteAllLines(filePath, new string[] { string.Empty });
+            string filePath = GetFilePath(_imgFolderPath, "base_star.txt");
+            File.WriteAllText(filePath, string.Empty);
         }
+
         public void ChangeSoundOnOff(int n)
         {
-            string filePath = GetFilePath("Sound_on_off.txt");
+            string filePath = GetFilePath(_imgFolderPath, "Sound_on_off.txt");
             string[] lines = File.Exists(filePath) ? File.ReadAllLines(filePath) : new string[0];
 
             if (lines.Length > 0)
